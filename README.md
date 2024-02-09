@@ -65,8 +65,6 @@
 
 # Usage
 
-1. Open your browser and go to http://localhost:8000 to access the React app.
-2. Register a new account or log in with existing credentials.
-3. Explore the protected routes available to authenticated users.
-4. Log out when done.
-
+1. Register a new account or log in with existing credentials.
+2. Explore the protected routes available to authenticated users.
+3. Log out when done.
