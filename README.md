@@ -22,7 +22,7 @@
 
    ```bash
    git clone https://github.com/pratikrk/Rudrastra_OSINT.git
-   cd Django-React-Authentication
+   cd Rudrastra_OSINT
    ```
 
 2. Set up a virtual environment and install dependencies:
