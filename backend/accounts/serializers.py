@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from .models import PhoneNumber
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -44,3 +45,9 @@ class LoginSerializer(serializers.Serializer):
 # class LoginSerializer(serializers.Serializer):
 #     username = serializers.CharField(max_length=150, required=True)
 #     password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
+
+
+class PhoneNumberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PhoneNumber
+        fields = ['phone_number']

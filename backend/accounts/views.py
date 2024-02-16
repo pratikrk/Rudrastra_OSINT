@@ -5,8 +5,9 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import SignupSerializer, LoginSerializer, UserSerializer
+from .serializers import SignupSerializer, LoginSerializer, UserSerializer,PhoneNumberSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from .models import PhoneNumber
 
 
 class UserProfile(APIView):
@@ -98,4 +99,15 @@ class LogoutView(APIView):
 #                 return Response({"message": "Logout successful"}, status=status.HTTP_205_RESET_CONTENT)
 #         except Exception as e:
 #             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+          
+class SubmitPhoneNumberView(APIView):
+    def post(self, request):
+        phone_number = request.data.get("phone_number")
+        if not phone_number:
+            return Response({"error": "Phone number is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        phone_number_obj = PhoneNumber.objects.create(phone_number=phone_number)
+
+        serializer = PhoneNumberSerializer(phone_number_obj)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
         
