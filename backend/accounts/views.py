@@ -1,3 +1,4 @@
+import requests
 from rest_framework import status
 from django.contrib.auth.models import User
 from rest_framework.response import Response
@@ -5,10 +6,10 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import SignupSerializer, LoginSerializer, UserSerializer,PhoneNumberSerializer
+from .serializers import SignupSerializer, LoginSerializer, UserSerializer,PhoneNumberSerializer,CheckWhatsAppSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import PhoneNumber
-
+from django.http import JsonResponse
 
 class UserProfile(APIView):
     permission_classes = (IsAuthenticated,)
@@ -110,4 +111,23 @@ class SubmitPhoneNumberView(APIView):
 
         serializer = PhoneNumberSerializer(phone_number_obj)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
+    
+
+
+class CheckWhatsAppView(APIView):
+    def get(self, request, your_number, number_to_check):
+        serializer = CheckWhatsAppSerializer(data={'your_number': your_number, 'number_to_check': number_to_check})
+        serializer.is_valid(raise_exception=True)
+        validated_data = serializer.validated_data
+
+        api_url = f'https://api.p.2chat.io/open/whatsapp/check-number/{your_number}/{number_to_check}'
+        headers = {
+            'X-User-API-Key': 'UAKf8a47ef7-869f-423b-aa30-407a93b99988'  
+        }
+
+        try:
+            response = requests.get(api_url, headers=headers)
+            response.raise_for_status()
+            return Response(response.json(), status=response.status_code)
+        except requests.RequestException as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

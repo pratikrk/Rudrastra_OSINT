@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from . import views
-
+from .views import CheckWhatsAppView
 app_name = "accounts"
 
 urlpatterns = [
@@ -13,4 +13,6 @@ urlpatterns = [
     path("logout/", views.LogoutView.as_view(), name="logout"),
     path("user/", views.UserProfile.as_view(), name="user"),
     path("submit-phone-number/", views.SubmitPhoneNumberView.as_view(), name="submit_phone_number"),
+    path('check-whatsapp/<your_number>/<number_to_check>/', CheckWhatsAppView.as_view(), name='check_whatsapp'),
+
 ]

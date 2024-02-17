@@ -51,3 +51,16 @@ class PhoneNumberSerializer(serializers.ModelSerializer):
     class Meta:
         model = PhoneNumber
         fields = ['phone_number']
+
+class CheckWhatsAppSerializer(serializers.Serializer):
+    your_number = serializers.CharField(max_length=15)
+    number_to_check = serializers.CharField(max_length=15)
+
+    def validate(self, data):
+        your_number = data.get('your_number')
+        number_to_check = data.get('number_to_check')
+
+        if not your_number or not number_to_check:
+            raise serializers.ValidationError("Both your number and number to check are required.")
+
+        return data
