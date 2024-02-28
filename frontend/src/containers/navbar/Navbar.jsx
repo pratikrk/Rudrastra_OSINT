@@ -78,6 +78,11 @@ const Navbar = () => {
                   Profile
                 </NavLink>
               </li>
+              <li>
+                <NavLink className="nav-link" to="/user/data">
+                  Data
+                </NavLink>
+              </li>
             </ul>
             {/* Apply ml-auto to move the following element to the right */}
             <ul className="navbar-nav ml-auto">

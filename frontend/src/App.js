@@ -2,7 +2,7 @@
 // import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navbar, Footer } from "./containers";
-import { Home, Signup, UserProfile, Login, About } from "./components";
+import { Home, Signup, UserProfile, Login, About, ShowingData } from "./components";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path="/user/signup" element={<Signup />} />
           <Route path="/user/login" element={<Login />} />
+          <Route path="/user/data" element={<ShowingData />} />
         </Routes>
         <Footer />
       </BrowserRouter>

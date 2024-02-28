@@ -2,7 +2,6 @@ import requests
 from rest_framework import status
 from django.contrib.auth.models import User
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -10,6 +9,7 @@ from .serializers import SignupSerializer, LoginSerializer, UserSerializer,Phone
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import PhoneNumber
 from django.http import JsonResponse
+from rest_framework.views import APIView
 
 class UserProfile(APIView):
     permission_classes = (IsAuthenticated,)
@@ -101,10 +101,7 @@ class LogoutView(APIView):
 #         except Exception as e:
 #             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
           
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-import requests
+
 
 class ThirdPartyIntegrationView(APIView):
     def post(self, request):
