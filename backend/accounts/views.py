@@ -114,7 +114,22 @@ class ThirdPartyIntegrationView(APIView):
             response_data = {}
 
 
-            #number to email
+            #whatsapp details
+            phone_number = input_fields.get("phone")
+            phone_number = self.format_phone_number(phone_number, input_fields.get("country_code"))
+            url = "https://whatsapp-osint.p.rapidapi.com/wspic/dck"
+            querystring = {"phone":f"{phone_number}"}
+
+            headers = {
+	            "X-RapidAPI-Key": "b95fd8411bmsh0848506b3e8609bp11583cjsnc7dd84f5f6ec",
+	            "X-RapidAPI-Host": "whatsapp-osint.p.rapidapi.com"
+            }
+
+            response = requests.get(url, headers=headers, params=querystring)
+
+            whatsapp_details=response.json()
+            response_data["whatsapp_data"] = whatsapp_details
+
 
             # Phone Lookup Module
             phone_data = None
@@ -131,7 +146,6 @@ class ThirdPartyIntegrationView(APIView):
 
                 response = requests.get(url, headers=headers, params=querystring)
 
-                print(response.json())
                 phone_data = response.json()
                 response_data["phone_lookup"] = phone_data
 
