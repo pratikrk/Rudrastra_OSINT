@@ -2,8 +2,15 @@
 // import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navbar, Footer } from "./containers";
-import { Home, Signup, UserProfile, Login, About, ShowingData } from "./components";
-
+import {
+  Home,
+  Signup,
+  UserProfile,
+  Login,
+  About,
+  ShowingData,
+} from "./components";
+import "./index.css";
 function App() {
   return (
     <>

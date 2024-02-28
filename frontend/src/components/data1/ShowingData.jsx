@@ -66,9 +66,9 @@ function ShowingData() {
         <div className="row mt-5">
           <div className="col-md-6 offset-md-3">
             <h2>Phone Lookup</h2>
-            <p>Query: {data.phone_lookup.query}</p>
-            <p>Status: {data.phone_lookup.status}</p>
-            <p>Number Type: {data.phone_lookup.numberType}</p>
+            <p>Whatsapp Present: {data.whatsapp_data.Registered}</p>
+            <p>Public Image: {data.whatsapp_data.PublicImage}</p>
+            {/* <p>Number Type: {data.phone_lookup.numberType}</p>   */}
             <h2>Breach Data</h2>
             {data.breach_data1.errors[0] === "false" ? (
               <p>No breaches found</p>
