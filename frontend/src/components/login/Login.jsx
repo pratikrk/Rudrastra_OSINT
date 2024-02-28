@@ -37,7 +37,7 @@ const Login = () => {
       try {
         const response = await AuthAPI.checkAuthentication();
         // console.log(response);
-        if (response.status == 200) {
+        if (response.status === 200) {
           navigate("/");
         }
       } catch (error) {
