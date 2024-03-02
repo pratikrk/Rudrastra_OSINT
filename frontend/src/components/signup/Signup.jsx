@@ -63,7 +63,7 @@ const Signup = () => {
     const checkAuth = async () => {
       try {
         const response = await AuthAPI.checkAuthentication();
-        if (response.status == 200) {
+        if (response.status === 200) {
           navigate("/");
         }
       } catch (error) {
